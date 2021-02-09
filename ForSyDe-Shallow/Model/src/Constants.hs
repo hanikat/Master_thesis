@@ -25,19 +25,20 @@ constantI = 500
 
 -- States which each verification of the application can be within
 correctState = 0
-erroneousState :: Integer
 erroneousState = 1
 recoveryState = 2
 
 
 
 constantJ = 500
-comstantK = 500
+constantK = 500
 constantL = 500
 constantM = 500
 constantN = 0.35
 constantO = 500
 
+verification6Limit = 300
+verification8Limit = 30
 
 -- Help functions for parsing a 4-way tuple
 first :: (Int,Int,Int,Int) -> Int 

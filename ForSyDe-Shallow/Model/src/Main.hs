@@ -37,6 +37,9 @@ import Verification1
 import Verification2
 import Verification3
 import Verification4
+import Verification5
+import Verification6
+import Verification8
 
 import Constants
 
@@ -231,7 +234,25 @@ verification3SDF signalAInput signalBInput signalCInput = actor11SDF 1 1 verific
 verification4SDF :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
 verification4SDF signalAInput signalBInput signalCInput = actor11SDF 1 1 verification4 (req12SDFDelayer signalAInput signalBInput signalCInput);
 
+verification5SDF :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+verification5SDF signalAInput signalBInput signalCInput = states
+     where {
+          cycleLimit = toInteger (30 * (1000 `div` fromIntegral tc));
+          (states,oldSignal,counter) = actor33SDF (1,1,1) (1,1,1) verification5 (req12SDFDelayer signalAInput signalBInput signalCInput) delayedOldSignal delayedCounter;
+          delayedOldSignal = delaySDF (take (fromInteger cycleLimit) (repeat (0,0))) $ oldSignal;
+          delayedCounter = delaySDF [0] counter;
+     }
 
+
+verification6SDF :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+verification6SDF signalAInput signalBInput signalCInput = actor11SDF 1 1 verification6 (verification5SDF signalAInput signalBInput signalCInput);
+
+verification8SDF :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+verification8SDF signalAInput signalBInput signalCInput = states
+     where {
+          (states,counter) = actor22SDF (1,1) (1,1) verification8 (req26SDFDelayer signalAInput signalBInput signalCInput) delayedCounter;
+          delayedCounter = delaySDF [0] counter;
+     }
 
 -- Function to run different parts of the model
 runModel1 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int,Int)
@@ -261,6 +282,15 @@ runModel8 signalAInput signalBInput signalCInput = verification3SDF signalAInput
 runModel9 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
 runModel9 signalAInput signalBInput signalCInput = verification4SDF signalAInput signalBInput signalCInput
 
+runModel10 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+runModel10 signalAInput signalBInput signalCInput = verification5SDF signalAInput signalBInput signalCInput
+
+runModel11 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+runModel11 signalAInput signalBInput signalCInput = verification6SDF signalAInput signalBInput signalCInput
+
+runModel12 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
+runModel12 signalAInput signalBInput signalCInput = verification8SDF signalAInput signalBInput signalCInput
+
 -- Print results from running different sub-sets of the model
 main = do
     print $ runModel1 signalA signalB signalC
@@ -272,3 +302,6 @@ main = do
     print $ runModel7 signalA signalB signalC
     print $ runModel8 signalA signalB signalC
     print $ runModel9 signalA signalB signalC
+    print $ runModel10 signalA signalB signalC
+    print $ runModel11 signalA signalB signalC
+    print $ runModel12 signalA signalB signalC

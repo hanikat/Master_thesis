@@ -98,7 +98,10 @@ executable Model
                        Verification1,
                        Verification2,
                        Verification3,
-                       Verification4, 
+                       Verification4,
+                       Verification5,
+                       Verification6,
+                       Verification8, 
                        Constants
 
   -- LANGUAGE extensions used by modules in this package.

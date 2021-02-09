@@ -16,7 +16,7 @@ import Constants
 verification4 :: [(Int,Int)] -> [Int]
 verification4 [] = []
 verification4 ((outputP0, outputP1):remainingSignal) = 
-    if abs outputP0 > fromIntegral comstantK || abs outputP1 > fromIntegral comstantK then
+    if abs outputP0 > fromIntegral constantK || abs outputP1 > fromIntegral constantK then
         fromInteger erroneousState : verification4 remainingSignal
     else
         fromInteger correctState : verification4 remainingSignal
