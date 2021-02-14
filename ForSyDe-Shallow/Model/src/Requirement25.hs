@@ -21,7 +21,7 @@ requirement25 [] _ _ = ([],[])
 requirement25 _ [] _ = ([],[])
 requirement25 _ _ [] = ([],[])
 requirement25 (outputB:remainingOutputB) (outputC:remainingOutputC) (outputAA:remainingOutputAA) = do
-    let outputZ = (snd computeIndex0, snd computeIndex1)
+    let outputZ = (fst computeIndex0, fst computeIndex1)
     let outputAA = (snd computeIndex0, snd computeIndex1)
     (outputZ : (fst nextOutput), outputAA : (snd nextOutput))
     where {
