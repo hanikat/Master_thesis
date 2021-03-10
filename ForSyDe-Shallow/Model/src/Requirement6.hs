@@ -10,7 +10,7 @@
 module Requirement6 where
 
 import Constants
-
+import Utility
 
 -- Input [(outputH[0][0](t-1),outputH[0][1](t-1),outputH[1][0](t-1),outputH[1][1](t-1))] -> 
 --       [(outputI[0][0](t-1),outputI[0][1](t-1),outputI[1][0](t-1),outputI[1][1](t-1))] ->
@@ -18,7 +18,7 @@ import Constants
 --       [(outputG[0][0],outputG[0][1],outputG[1][0],outputG[1][1])]
 
 -- Output [((outputH[0][0],outputH[0][1],outputH[1][0],outputH[1][1]),(outputI[0][0],outputI[0][1],outputI[1][0],outputI[1][1]))]
-requirement6 :: [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> ([(Int,Int,Int,Int)], [(Int,Int,Int,Int)])
+requirement6 :: (Fractional a, Ord a) => [(a,a,a,a)] -> [(a,a,a,a)] -> [(Int,Int,Int,Int)] -> [(a,a,a,a)] -> ([(a,a,a,a)], [(a,a,a,a)])
 requirement6 [] _ _ _ = ([],[])
 requirement6 _ [] _ _ = ([],[])
 requirement6 _ _ [] _ = ([],[])
@@ -49,7 +49,7 @@ requirement6 (outputH:remainingOutputH) (outputI:remainingOutputI) (outputB:rema
 
 -- Input [(outputB[x][y], outputG[x][y], outputHOld[x][y](t-1), outputIOld[x][y](t-1))]
 -- Output [(outputH,outputI)]
-requirement6Compute :: (Integral a, Eq a, Ord a, Num a) =>  (a,a,a,a) -> (a,a)
+requirement6Compute :: (Fractional a, Eq a, Ord a) =>  (Int,a,a,a) -> (a,a)
 requirement6Compute (outputB,outputG,outputHOld,outputIOld) =
      if outputB /= 0 then 
         (outputG, outputI)
@@ -67,5 +67,5 @@ requirement6Compute (outputB,outputG,outputHOld,outputIOld) =
                 else
                     outputI;
             -- outputI calculation
-            outputI = (abs (outputG * fromInteger constantI) + 50) `div` 100;
+            outputI = (abs (outputG * realToFrac constantI) + 50) / 100;
          }

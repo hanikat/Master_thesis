@@ -11,6 +11,7 @@ module Requirement8 where
 
 -- Re-use requirement6 since the same calculations are performed, just on different signals
 import Constants
+import Utility
 import Requirement6
 
 
@@ -20,7 +21,7 @@ import Requirement6
 --       [(outputJ[0][0],outputJ[0][1],outputJ[1][0],outputJ[1][1])]
 
 -- Output ([(outputK[0][0],outputK[0][1],outputK[1][0],outputK[1][1])],[(outputL[0][0],outputL[0][1],outputL[1][0],outputL[1][1])])
-requirement8 :: [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> ([(Int,Int,Int,Int)],[(Int,Int,Int,Int)])
+requirement8 :: (Fractional a, Ord a) => [(a,a,a,a)] -> [(a,a,a,a)] -> [(Int,Int,Int,Int)] -> [(a,a,a,a)] -> ([(a,a,a,a)],[(a,a,a,a)])
 requirement8 [] _ _ _ = ([],[])
 requirement8 _ [] _ _ = ([],[])
 requirement8 _ _ [] _ = ([],[])

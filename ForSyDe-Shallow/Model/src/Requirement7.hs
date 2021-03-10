@@ -17,11 +17,14 @@ import Requirement5
 --        [(signalB[0],signalB[1])] ->
 --        [(signalC[0][0],signalC[0][1],signalC[1][0],signalC[1][1])]
 -- Output [(outputJ[0][0],outputJ[0][1],outputJ[1][0],outputJ[1][1])]
-requirement7 ::  [(Int,Int,Int,Int)] -> [(Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)]
+requirement7 :: (Fractional a, Ord a) => [(Int,Int,Int,Int)] -> [(Int,Int)] -> [(Int,Int,Int,Int)] -> [(a,a,a,a)]
 requirement7 [] _ _ = []
 requirement7 _ [] _ = []
 requirement7 _ _ [] = []
-requirement7 outputB signalB signalC = requirement5 outputB (map requirement7Helper signalB) signalC
+requirement7 outputB signalB signalC = requirement5 outputB (map requirement7Helper signalB) (map requirement7Helper2 signalC)
 
 requirement7Helper :: (Int,Int) -> (Int,Int)
 requirement7Helper (signalB0,signalB1) = (negate signalB0, negate signalB1)
+
+requirement7Helper2 :: (Int,Int,Int,Int) -> (Int,Int,Int,Int)
+requirement7Helper2 (signalC00,signalC01,signalC10,signalC11) = (negate signalC00, negate signalC01, negate signalC10, negate signalC11)

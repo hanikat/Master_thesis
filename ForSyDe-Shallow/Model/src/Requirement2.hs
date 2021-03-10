@@ -52,7 +52,7 @@ requirement2Helper3 (outputA00,outputA01,outputA10,outputA11) (outputW0Old,outpu
    
 isOppositeSigns :: Int -> Int -> Bool
 isOppositeSigns x y =
-   if (x >= 0 && y >= 0) || (x < 0 && y < 0) then
+   if (x > 0 && y > 0) || (x < 0 && y < 0) || (x == 0 && y == 0) then
       False
    else
       True

@@ -14,7 +14,7 @@ import Constants
 -- Input  [(outputE[0][0](t-2),outputE[0][1](t-2),outputE[1][0](t-2),outputE[1][1](t-2))] -> 
 --        [(outputE[0][0],outputE[0][1],outputE[1][0],outputE[1][1],outputE[1][1])]
 -- Output [(outputX[0][0],outputX[0][1],outputX[1][0],outputX[1][1])]
-requirement23 :: [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)] -> [(Int,Int,Int,Int)]
+requirement23 :: (Fractional a, Ord a) => [(a,a,a,a)] -> [(a,a,a,a)] -> [(a,a,a,a)]
 requirement23 [] _ = []
 requirement23 _ [] = []
 requirement23 ((outputE00Old,outputE01Old,outputE10Old,outputE11Old):remainingOutputEOld) ((outputE00,outputE01,outputE10,outputE11):remainingOutputE) = do
@@ -24,8 +24,8 @@ requirement23 ((outputE00Old,outputE01Old,outputE10Old,outputE11Old):remainingOu
 
 -- Input [(outputE[x][y], outputE[x][y](t-2))]
 -- Output [outputX]
-requirement23Compute :: (Integral a, Num a) => (a,a) -> a
+requirement23Compute :: (Fractional a, Ord a) => (a,a) -> a
 requirement23Compute (outputE,outputEold) = outputX
     where {
-        outputX = (200000 * (abs outputE - abs outputEold) + fromInteger constantF) `div` (2 * fromInteger constantF);
+        outputX = (200000 * (abs outputE - abs outputEold) + fromInteger constantF) / (2 * fromInteger constantF);
     }

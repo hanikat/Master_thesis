@@ -14,6 +14,6 @@ import Requirement10
 -- Input [(outputK[0][0],outputK[0][1],outputK[1][0],outputK[1][1])]
 -- Output [(outputO[0],outputO[1])]
 -- Re-using requirement 10 since the same calculation is performed
-requirement11 :: (Ord a, Num a) => [(a,a,a,a)] -> [(a,a)]
-requirement11 outputK =
-    requirement10 outputK
+requirement11 :: (Fractional a, Ord a) => [(a,a,a,a)] -> [(a,a)]
+requirement11 ((outputK00,outputK01,outputK10,outputK11):remainingOutputK) =
+    (min outputK00 outputK01, min outputK10 outputK11) : requirement10 remainingOutputK

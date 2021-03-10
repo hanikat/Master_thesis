@@ -9,19 +9,19 @@
 --------------------------------------------------
 module Requirement25 where
 
-import Constants
-
+import Constants ( constantC, constantH, constantB, constantG )
+import Utility
 
 -- Input  [(outputB[0][0],outputB[0][1],outputB[1][0],outputB[1][1])] -> 
 --        [(outputC[0],outputC[1])] ->
 --        [(outputAA[0](t-1),outputAA[1](t-1))]
 -- Output ([(outputZ[0],outputZ[1])],[(outputAA[0],outputAA[1])])
-requirement25 :: [(Int,Int,Int,Int)] -> [(Int,Int)] -> [(Int,Int)] -> ([(Int,Int)],[(Int,Int)])
+requirement25 :: (Fractional a, Ord a) => [(Int,Int,Int,Int)] -> [(Int,Int)] -> [(a,a)] -> ([(a,a)],[(a,a)])
 requirement25 [] _ _ = ([],[])
 requirement25 _ [] _ = ([],[])
 requirement25 _ _ [] = ([],[])
 requirement25 (outputB:remainingOutputB) (outputC:remainingOutputC) (outputAA:remainingOutputAA) = do
-    let outputZ = (snd computeIndex0, snd computeIndex1)
+    let outputZ = (fst computeIndex0, fst computeIndex1)
     let outputAA = (snd computeIndex0, snd computeIndex1)
     (outputZ : (fst nextOutput), outputAA : (snd nextOutput))
     where {
@@ -33,12 +33,12 @@ requirement25 (outputB:remainingOutputB) (outputC:remainingOutputC) (outputAA:re
 
 -- Input  (outputB[x][0],outputC[x],outputAA[x])
 -- Output (outputZ[x], outputAA[x])
-requirement25Compute :: (Int,Int,Int) -> (Int,Int)
+requirement25Compute :: (Fractional a, Ord a) => (Int,Int,a) -> (a,a)
 requirement25Compute (outputB,outputC,outputAAOld) = 
-    (fromInteger outputZ, fromInteger outputAA)
+    (outputZ, outputAA)
     where {
-        numerator = constantG * constantB * toInteger outputB * toInteger outputC + toInteger outputAAOld;
-        denominator = constantH * constantC;
-        outputZ = numerator `div` denominator;
+        numerator = fromInteger constantG * fromInteger constantB * fromInteger (toInteger outputB) * fromInteger (toInteger outputC) + outputAAOld;
+        denominator = fromInteger constantH * fromInteger constantC;
+        outputZ = numerator / denominator;
         outputAA = numerator - (outputZ * denominator);
     }

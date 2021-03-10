@@ -5,50 +5,34 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
--- Description: Constants used in program flow.
+-- Description: Constants used throughout model.
 --------------------------------------------------
 module Constants where
 
 -- Constants
 tc = 50
-constantA = [1,2]
-constantB = 500
-constantC = 500
-constantD = 500
-constantE = 500
-constantF = 500
-constantG = 500
-constantH = constantE
-constantI = 500
+constantA = [1,1]
+constantB = 100
+constantC = 125
+constantD = 50
+constantE = 10
+constantF = 10000
+constantG = 710
+constantH = 226
+constantI = 0.01
+constantJ = 5
+constantK = 15278
+constantL = 500
+constantM = 139
+constantO = 500
+-- Verification6Limit
+constantP = 300
+-- verification8Limit
+constantQ = 30
 
-
+cyclesPerSecond = (1000 `div` tc)
 
 -- States which each verification of the application can be within
 correctState = 0
 erroneousState = 1
 recoveryState = 2
-
-
-
-constantJ = 500
-constantK = 500
-constantL = 500
-constantM = 500
-constantN = 0.35
-constantO = 500
-
-verification6Limit = 300
-verification8Limit = 30
-
--- Help functions for parsing a 4-way tuple
-first :: (Int,Int,Int,Int) -> Int 
-first (x,_,_,_) = x
-
-second :: (Int,Int,Int,Int) -> Int 
-second (_,x,_,_) = x
-
-third :: (Int,Int,Int,Int) -> Int 
-third (_,_,x,_) = x
-
-fourth :: (Int,Int,Int,Int) -> Int 
-fourth (_,_,_,x) = x

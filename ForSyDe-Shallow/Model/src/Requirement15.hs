@@ -16,5 +16,5 @@ import Requirement12
 --        [(outputO[0],outputO[1])]
 -- Output ([(outputT[0],outputT[1])], [(outputU[0],outputU[1])])
 -- Re-using requirement12 since the same calculations are performed
-requirement15 :: [(Int,Int)] -> [(Int,Int)] -> [(Int,Int)] -> ([(Int,Int)],[(Int,Int)])
+requirement15 :: (Fractional a, Ord a) =>  [(a,a)] -> [(a,a)] -> [(a,a)] -> ([(a,a)],[(a,a)])
 requirement15 outputT outputU outputO = requirement12 outputT outputU outputO

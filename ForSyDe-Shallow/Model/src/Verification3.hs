@@ -11,12 +11,21 @@ module Verification3 where
 
 import Constants
 
--- Input [(outputY[0], outputY[1])]
+-- Input  [(outputY[0], outputY[1])] ->
+--        [recoveryCounter]
 -- Output [states]
-verification3 :: [(Int,Int)] -> [Int]
-verification3 [] = []
-verification3 ((outputY0, outputY1):remainingSignal) = 
-    if min outputY0 outputY1 >= 0 || max outputY0 outputY1 < 0 then
-        fromInteger correctState : verification3 remainingSignal
+verification3 :: (Fractional a, Ord a) => [(a,a)] -> [Int] -> ([Int],[Int])
+verification3 [] _ = ([],[])
+verification3 _ [] = ([],[])
+verification3 ((outputY0, outputY1):remainingSignal) (counter:remainingCounters) =
+    if outputY0 * outputY1 > 0 then
+        if counter > 0 then
+            (fromInteger recoveryState : nextStates, (counter - 1) : nextCounters)
+        else
+            (fromInteger correctState : nextStates, 0 : nextCounters)
     else
-        fromInteger erroneousState : verification3 remainingSignal
+        (fromInteger erroneousState : nextStates, fromInteger cyclesPerSecond : nextCounters)
+
+    where {
+        (nextStates, nextCounters) = verification3 remainingSignal remainingCounters
+    }

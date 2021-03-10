@@ -14,8 +14,8 @@ import Constants
 -- Input  [(outputP[0](t-1),outputP[1](t-1)] -> 
 --        [(outputQ[0](t-1),outputQ[1](t-1))] -> 
 --        [(outputM[0],outputM[1])]
--- Output [((outputP[0],outputQ[0]),(outputP[1],outputQ[1]))]
-requirement12 :: [(Int,Int)] -> [(Int,Int)] -> [(Int,Int)] -> ([(Int,Int)],[(Int,Int)])
+-- Output ([(outputP[0],outputP[1])],[(outputQ[0],outputQ[1])])
+requirement12 :: (Fractional a, Ord a) => [(a,a)] -> [(a,a)] -> [(a,a)] -> ([(a,a)],[(a,a)])
 requirement12 [] _ _ = ([],[])
 requirement12 _ [] _ = ([],[])
 requirement12 _ _ [] = ([],[])
@@ -32,11 +32,11 @@ requirement12 ((outputP0Old,outputP1Old):remainingOutputP) ((outputQ0Old,outputQ
 
 -- Input [(outputM[x],outputP[x](t-1),outputQ[x](t-1))]
 -- Output [(outputP[x],outputQ[x])]
-requirement12Compute :: (Integral a, Num a) => (a,a,a) -> (a,a)
+requirement12Compute :: (Fractional a, Ord a) => (a,a,a) -> (a,a)
 requirement12Compute (outputM,outputPOld,outputQOld) =
-    (fromIntegral outputP, fromIntegral outputQ)
+    (outputP, outputQ)
     where {
-        outputP = numerator `div` (constantC + constantD);
-        outputQ = numerator - (constantC + constantD) * outputP;
-        numerator = constantD * toInteger outputPOld + constantC * toInteger outputM + toInteger outputQOld;
+        outputP = numerator / fromInteger (constantC + constantD);
+        outputQ = numerator - fromInteger (constantC + constantD) * outputP;
+        numerator = fromInteger constantD * outputPOld + fromInteger constantC * outputM + outputQOld;
     }

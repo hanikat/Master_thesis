@@ -11,12 +11,30 @@ module Verification4 where
 
 import Constants
 
--- Input [(outputP[0], outputP[1])]
--- Output [states]
-verification4 :: [(Int,Int)] -> [Int]
-verification4 [] = []
-verification4 ((outputP0, outputP1):remainingSignal) = 
-    if abs outputP0 > fromIntegral constantK || abs outputP1 > fromIntegral constantK then
-        fromInteger erroneousState : verification4 remainingSignal
+-- Input  [(outputP[0], outputP[1])] ->
+--        [(counter[0], counter[1])]
+-- Output ([(state[0],state[1])], [(counter[0],counter[1])])
+verification4 :: (Fractional a, Ord a) => [(a,a)] -> [(Int,Int)] -> ([(Int,Int)],[(Int,Int)])
+verification4 [] _ = ([],[])
+verification4 _ [] = ([],[])
+verification4 ((outputP0, outputP1):remainingSignal) ((previousCounter0, previousCounter1):remainingCounters) = 
+    ((state0,state1) : nextStates, (counter0,counter1) : nextCounters)
+    where {
+        (state0,counter0) = verification4Helper outputP0 previousCounter0;
+        (state1,counter1) = verification4Helper outputP1 previousCounter1;
+        (nextStates,nextCounters) = verification4 remainingSignal remainingCounters;
+    }
+
+
+-- Input  OutputP[x] ->
+--        counter[x]
+-- Output (state[x], counter[x])
+verification4Helper :: (Fractional a, Ord a) => a -> Int -> (Int,Int)
+verification4Helper outputP counter =
+    if abs outputP > fromIntegral constantK then
+        (fromInteger erroneousState, fromInteger cyclesPerSecond)
     else
-        fromInteger correctState : verification4 remainingSignal
+        if counter > 0 then
+            (fromInteger recoveryState, counter - 1)
+        else
+            (fromInteger correctState, 0)

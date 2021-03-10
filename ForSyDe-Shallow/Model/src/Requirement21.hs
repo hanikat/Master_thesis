@@ -13,7 +13,7 @@ module Requirement21 where
 --       [(outputT[0],outputT[1])] -> 
 --       [(outputV[0],outputV[1])]
 -- Output [(outputW[0],outputW[1])]
-requirement21 :: [(Int,Int)] -> [(Int,Int)] -> [(Int,Int)] -> [(Int,Int)]
+requirement21 :: (Fractional a, Ord a) => [(a,a)] -> [(a,a)] -> [(Int,Int)] -> [(Int,Int)]
 requirement21 [] _ _ = []
 requirement21 _ [] _ = []
 requirement21 _ _ [] = []
@@ -22,9 +22,9 @@ requirement21 ((outputR0,outputR1):remainingOutputR) ((outputT0,outputT1):remain
 
 -- Input [(outputR[x], outputT[x], outputV[x])]
 -- Output [outputW[x]]
-requirement21Helper :: (Int,Int,Int) -> Int
+requirement21Helper :: (Fractional a, Ord a) => (a,a,Int) -> Int
 requirement21Helper (outputR,outputT,outputV) = 
-    if (outputR > 0 && outputT < 0) || (outputR < 0 && outputT > 0) then
+    if (outputR > 0 && outputT < 0) || (outputR < 0 && outputT > 0) || (outputR == 0 || outputT == 0) then
         0
     else
         outputV

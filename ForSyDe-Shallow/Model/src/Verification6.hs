@@ -11,8 +11,8 @@ module Verification6 where
 
 import Constants
 
-cycleLimit = toInteger (verification6Limit * (500 `div` fromIntegral tc))
-threshold = fromInteger cycleLimit * constantN
+cycleLimit = toInteger (300 * cyclesPerSecond)
+threshold = fromInteger cycleLimit * 0.35
 
 
 -- Helper function
