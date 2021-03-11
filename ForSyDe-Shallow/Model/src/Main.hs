@@ -48,20 +48,20 @@ import Constants
 
 -- Signals
 -- (signalA[0][0],(signalA[0][1],(signalA[1][0],(signalA[1][1])
-signalA = signal [(0,0,0,0),(4,2,7,0),(4,3,17,4),(8,8,16,4),(7,9,15,6),(16,9,13,15),(18,19,14,20),(23,29,13,19),(31,38,14,26),(31,43,20,35)]
+signalA = signal [(1,0,0,0),(0,0,1,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0)]
 -- (signalB[0],signalB[1])
-signalB = signal [(1,0),(1,1),(0,1),(0,1),(0,0),(1,0),(1,1),(1,1),(0,0),(0,0)]
+signalB = signal [(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)]
 -- (signalC[0][0],signalC[0][1],signalC[1][0],signalC[1][1])
-signalC = signal [(0,1,1,0),(1,0,0,0),(1,0,0,1),(1,0,1,1),(1,0,0,1),(1,1,0,0),(1,1,1,0),(0,1,1,0),(0,0,0,1),(0,0,0,0)]
+signalC = signal [(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0),(0,0,0,0)]
 
---outputW = signal [(0,0),(0,0),(0,0),(1,0),(1,1),(1,0),(1,1),(1,1),(1,1),(1,1),(1,1)]
+outputW = [(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)]
 
 -- Process constructors for requirements modeled
 req1SDF :: Signal (Int, Int, Int, Int) -> Signal (Int, Int, Int, Int)
 req1SDF = actor11SDF 1 1 requirement1;
 
 req2SDF :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> (Signal (Int,Int,Int,Int), Signal (Int,Int))
-req2SDF signalAInput signalBInput signalCInput = actor22SDF (1,1) (1,1) requirement2 (req1SDF signalAInput) (delaySDF [(0,0),(0,0)] $ req21SDF signalAInput signalBInput signalCInput);
+req2SDF signalAInput signalBInput signalCInput = actor22SDF (1,1) (1,1) requirement2 (req1SDF signalAInput) (delaySDF outputW $ req21SDF signalAInput signalBInput signalCInput);
 
 req3SDF :: (Fractional a, Ord a) => Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (a, a, a, a)
 req3SDF signalAInput signalBInput signalCInput = actor11SDF 1 1 requirement3 . fst $ req2SDF signalAInput signalBInput signalCInput;
@@ -270,9 +270,13 @@ verification8SDF signalAInput signalBInput signalCInput = states
 
 -- Function to setup SDF graph
 runModel :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int)
-runModel signalAInput signalBInput signalCInput = verification8SDF signalAInput signalBInput signalCInput
+runModel signalAInput signalBInput signalCInput = verification3SDF signalAInput signalBInput signalCInput
+
+runModel1 :: Signal (Int,Int,Int,Int) -> Signal (Int,Int) -> Signal (Int,Int,Int,Int) -> Signal (Int,Int)
+runModel1 signalAInput signalBInput signalCInput = req21SDF signalAInput signalBInput signalCInput
 
 main = do
     print $ runModel signalA signalB signalC
+    print $ runModel1 signalA signalB signalC
 
      

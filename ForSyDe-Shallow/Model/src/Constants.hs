@@ -24,8 +24,10 @@ constantJ = 5
 constantK = 15278
 constantL = 500
 constantM = 139
+constantO :: Integer
 constantO = 500
 -- Verification6Limit
+constantP :: Integer
 constantP = 300
 -- verification8Limit
 constantQ = 30
@@ -34,5 +36,5 @@ cyclesPerSecond = (1000 `div` tc)
 
 -- States which each verification of the application can be within
 correctState = 0
-erroneousState = 1
-recoveryState = 2
+erroneousState = 2
+recoveryState = 1
