@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies:
+-- Output-Dependencies: N/A
+-- Requirement: Verification 8
 -- Description: Verification 8
 --------------------------------------------------
 module Verification8 where

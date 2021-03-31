@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 24
+-- Output-Dependencies: N/A
+-- Requirement: Requirement 24
 -- Description: Verification3
 --------------------------------------------------
 module Verification3 where

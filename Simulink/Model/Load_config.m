@@ -1,4 +1,6 @@
-Constants = readcell("C:\Users\Marcus\Documents\GitHub\Master_thesis\Excel\Signals.xlsx", "Sheet", "Constants", "Range", "B2:B23");
+%Constants = readcell("C:\Users\Marcus\Documents\GitHub\Master_thesis\Excel\Signals.xlsx", "Sheet", "Constants", "Range", "B2:B23");
+Constants = readcell("/Users/marcushanikat/Documents/git/Master_thesis/Excel/Signals.xlsx", "Sheet", "Constants", "Range", "B2:B23");
+
 
 ConstantA = Constants{1};
 ConstantB = Constants{2};

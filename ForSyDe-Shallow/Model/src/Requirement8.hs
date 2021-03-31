@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 7
+-- Output-Dependencies: Requirement 11
+-- Requirement: Requirement 8
 -- Description: 
 --------------------------------------------------
 module Requirement8 where

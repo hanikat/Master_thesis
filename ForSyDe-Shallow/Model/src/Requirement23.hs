@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 4
+-- Output-Dependencies: Requirement 24
+-- Requirement: Requirement 23
 -- Description: Requirement 23
 --------------------------------------------------
 module Requirement23 where

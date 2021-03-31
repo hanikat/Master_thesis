@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 2
+-- Output-Dependencies: Requirement 26
+-- Requirement: Requirement 25
 -- Description: Requirement 25
 --------------------------------------------------
 module Requirement25 where

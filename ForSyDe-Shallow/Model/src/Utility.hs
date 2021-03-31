@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: N/A
+-- Output-Dependencies: N/A
+-- Requirement: N/A
 -- Description: Utility functions used throughout model
 --------------------------------------------------
 module Utility where

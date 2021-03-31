@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 12
+-- Output-Dependencies: N/A
+-- Requirement: Verification 4
 -- Description: Verification 4
 --------------------------------------------------
 module Verification4 where

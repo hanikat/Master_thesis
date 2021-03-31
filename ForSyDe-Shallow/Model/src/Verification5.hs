@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 12
+-- Output-Dependencies: Verification 6
+-- Requirement: Verification 5
 -- Description: Verification 5
 --------------------------------------------------
 module Verification5 where

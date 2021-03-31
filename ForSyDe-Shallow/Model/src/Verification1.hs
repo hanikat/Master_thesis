@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Rrequirement 2, Requirement 21
+-- Output-Dependencies: N/A
+-- Requirement: Verification 1
 -- Description: Verification1
 --------------------------------------------------
 module Verification1 where

@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
+-- Input-Dependencies: N/A
+-- Output-Dependencies: N/A
+-- Requirement: N/A
 -- Description: Constants used throughout model.
 --------------------------------------------------
 module Constants where

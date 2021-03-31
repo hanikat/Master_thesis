@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 2
+-- Output-Dependencies: Requirement 4
+-- Requirement: Requirement 3
 -- Description: Requirement 3
 --------------------------------------------------
 module Requirement3 where

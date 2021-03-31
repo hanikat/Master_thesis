@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 11
+-- Output-Dependencies: Requirement 21
+-- Requirement: Requirement 15
 -- Description: Requirement 15
 --------------------------------------------------
 module Requirement15 where

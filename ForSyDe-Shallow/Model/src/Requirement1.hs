@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
+-- Input-Dependencies: SignalA
+-- Output-Dependencies: Requirement1
+-- Requirement: Requirement 1
 -- Description: Requirement 1 definition
 --------------------------------------------------
 module Requirement1 where

@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 9
+-- Output-Dependencies: Requirement 20
+-- Requirement: Requirement 12
 -- Description: Requirement 12
 --------------------------------------------------
 module Requirement12 where

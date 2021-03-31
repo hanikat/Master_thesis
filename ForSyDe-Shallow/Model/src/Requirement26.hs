@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2021 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement 25
+-- Output-Dependencies: Verification 8
+-- Requirement: Requirement 26
 -- Description: Requirement 26
 --------------------------------------------------
 module Requirement26 where

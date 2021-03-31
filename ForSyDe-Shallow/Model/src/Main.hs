@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
+-- Input-Dependencies: All requirements required to run the model
+-- Output-Dependencies: N/A
+-- Requirement: None, used to setup and run model
 -- Description: Contains the construction of ForSyDe processes, 
 -- signal defintions and main method for model execution
 --------------------------------------------------

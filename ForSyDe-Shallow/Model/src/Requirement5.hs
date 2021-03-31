@@ -5,6 +5,9 @@
 -- Contact: hanikat@kth.se
 -- Copyright: (c) 2020 Marcus Hanikat
 --
+-- Input-Dependencies: Requirement2, SignalB, SignalC
+-- Output-Dependencies: Requirement 6
+-- Requirement: Requirement 5
 -- Description: Requirement 5
 -- Re-use of the requirement3 function since the same calculations are performed
 --------------------------------------------------
